@@ -1,0 +1,18 @@
+# Основные зависимости FastAPI и сервер + pip install "fastapi-cache2[redis]"
+fastapi
+uvicorn
+
+# БД
+redis
+alembic
+sqlalchemy
+pydantic
+pydantic[email]
+
+# # Асинхронные библиотеки
+aiofiles
+asyncpg
+aiosmtplib
+
+# Дополнительные зависимости
+python-dotenv
