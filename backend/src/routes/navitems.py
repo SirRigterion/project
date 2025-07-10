@@ -12,7 +12,7 @@ router = APIRouter()
 
 # Навигационные элементы
 @router.get("/navitems")
-@cache(expire=300)
+# @cache(expire=300)
 async def get_navitems(db: AsyncSession = Depends(get_db)):
     try:
         result = await db.execute(select(NavItem))
