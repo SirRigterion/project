@@ -8,9 +8,9 @@ RUN npm run build
 
 # 2) NGINX
 FROM nginx:stable-alpine
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY  
 COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
