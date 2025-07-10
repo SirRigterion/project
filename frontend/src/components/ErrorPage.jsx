@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
 import { Container, Typography, Box, Button, CircularProgress } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useNav } from '../NavContext';
 
 const ErrorPage = ({ mode }) => {
   const { loading, error, fetchNavItems } = useNav();
+  const navigate = useNavigate();
 
   const handleRetry = async () => {
     const success = await fetchNavItems();
     if (success) {
-      window.location.href = '/';
+      navigate('/'); // Use navigate instead of window.location.href
     }
   };
 
@@ -18,8 +19,8 @@ const ErrorPage = ({ mode }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      id="not-found"
-      className="not-found-page"
+      id="error" // Changed from "not-found" to "error" for consistency with content
+      className="error-page" // Updated className for consistency
       style={{
         minHeight: '100vh',
         display: 'flex',
@@ -32,7 +33,7 @@ const ErrorPage = ({ mode }) => {
         <Typography
           variant="h1"
           component="h1"
-          className="not-found-title"
+          className="error-title" // Updated className for consistency
           sx={{
             color: mode === 'dark' ? 'var(--text-light)' : 'var(--text-dark)',
             textAlign: 'center',
@@ -76,52 +77,48 @@ const ErrorPage = ({ mode }) => {
             fontSize: { xs: '1rem', sm: '1.125rem' },
           }}
         >
-           {/* {error || 'К сожалению, запрашиваемая страница не загрузилась правильно, попробуйте позже.'} */}
-          {'К сожалению, запрашиваемая страница не загрузилась правильно, попробуйте позже.'}
+          {error || 'К сожалению, запрашиваемая страница не загрузилась правильно. Попробуйте обновить страницу или свяжитесь с поддержкой, если проблема сохраняется.'}
         </Typography>
         <Box sx={{ textAlign: 'center', display: 'flex', gap: 2, alignItems: 'center', justifyContent: 'center' }}>
-          {loading ? (
-            <CircularProgress />
-          ) : (
-            <>
-              <Button
-                onClick={handleRetry}
-                variant="contained"
-                sx={{
-                  background: 'linear-gradient(90deg, var(--primary), var(--secondary))',
-                  color: '#fff',
-                  fontWeight: 600,
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: '8px',
-                  '&:hover': {
-                    background: 'linear-gradient(90deg, var(--secondary), var(--primary))',
-                  },
-                }}
-              >
-                Попробовать снова
-              </Button>
-              <Button
-                component={Link}
-                to="/"
-                variant="outlined"
-                sx={{
-                  color: mode === 'dark' ? 'var(--text-light)' : 'var(--text-dark)',
-                  borderColor: 'var(--secondary)',
-                  fontWeight: 600,
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: '8px',
-                  '&:hover': {
-                    borderColor: 'var(--primary)',
-                    background: 'var(--bg-hover)',
-                  },
-                }}
-              >
-                Вернуться на главную
-              </Button>
-            </>
-          )}
+          <Button
+            onClick={handleRetry}
+            variant="contained"
+            disabled={loading} // Disable button during loading
+            aria-label="Попробовать снова загрузить данные" // Added for accessibility
+            sx={{
+              background: 'linear-gradient(90deg, var(--primary), var(--secondary))',
+              color: '#fff',
+              fontWeight: 600,
+              px: 4,
+              py: 1.5,
+              borderRadius: '8px',
+              '&:hover': {
+                background: 'linear-gradient(90deg, var(--secondary), var(--primary))',
+              },
+            }}
+          >
+            {loading ? <CircularProgress size={24} /> : 'Попробовать снова'} {/* Show spinner only on button */}
+          </Button>
+          <Button
+            component={Link}
+            to="/"
+            variant="outlined"
+            aria-label="Вернуться на главную страницу" // Added for accessibility
+            sx={{
+              color: mode === 'dark' ? 'var(--text-light)' : 'var(--text-dark)',
+              borderColor: 'var(--secondary)',
+              fontWeight: 600,
+              px: 4,
+              py: 1.5,
+              borderRadius: '8px',
+              '&:hover': {
+                borderColor: 'var(--primary)',
+                background: 'var(--bg-hover)',
+              },
+            }}
+          >
+            Вернуться на главную
+          </Button>
         </Box>
       </Container>
     </motion.section>

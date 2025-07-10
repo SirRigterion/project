@@ -24,20 +24,19 @@ import { useNav } from '../NavContext';
 const drawerWidth = 240;
 
 function Navigation({ mode, modeChange }) {
-  const { navItems, loading, error, fetchNavItems } = useNav();
+  const { navItems, loading, error } = useNav();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchNavItems();
     const handleScroll = () => {
       setScrolled(window.scrollY > 0);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [fetchNavItems, location.pathname]);
+  }, []);
 
   useEffect(() => {
     if (!loading && (error || navItems.length === 0)) {
@@ -83,12 +82,8 @@ function Navigation({ mode, modeChange }) {
               sx={{
                 textAlign: 'center',
                 color: mode === 'dark' ? 'var(--text-light) !important' : 'var(--text-dark) !important',
-                '&:hover': {
-                  color: 'var(--secondary) !important',
-                },
-                '&.active': {
-                  color: 'var(--secondary) !important',
-                },
+                '&:hover': { color: 'var(--secondary) !important' },
+                '&.active': { color: 'var(--secondary) !important' },
               }}
               component={NavLink}
               to={item.to}
@@ -170,15 +165,8 @@ function Navigation({ mode, modeChange }) {
                   textTransform: 'none',
                   fontWeight: 500,
                   fontSize: '0.95rem',
-                  '&:hover': {
-                    color: 'var(--secondary) !important',
-                    backgroundColor: 'transparent !important',
-                  },
-                  '&.active': {
-                    color: 'var(--secondary) !important',
-                    borderBottom: '2px solid var(--secondary)',
-                    backgroundColor: 'transparent !important',
-                  },
+                  '&:hover': { color: 'var(--secondary) !important', backgroundColor: 'transparent !important' },
+                  '&.active': { color: 'var(--secondary) !important', borderBottom: '2px solid var(--secondary)' },
                 }}
                 aria-label={item.label}
               >

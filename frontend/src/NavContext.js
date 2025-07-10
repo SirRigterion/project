@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 
 const NavContext = createContext();
@@ -25,13 +25,17 @@ export const NavProvider = ({ children }) => {
         return fetchNavItems(retries - 1, delay);
       }
       setError(err.message || 'Не удалось загрузить данные.');
-      // setError('Не удалось загрузить данные.');
       setNavItems([]);
       return false;
     } finally {
       setLoading(false);
     }
   }, []);
+
+  // Fetch navigation items once on mount
+  useEffect(() => {
+    fetchNavItems();
+  }, [fetchNavItems]);
 
   return (
     <NavContext.Provider value={{ navItems, loading, error, fetchNavItems }}>
