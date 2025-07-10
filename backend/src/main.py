@@ -16,7 +16,7 @@ async def lifespan(app: FastAPI):
     yield
     await close_cache()
 
-app = FastAPI(lifespan=lifespan, title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
+app = FastAPI(lifespan=lifespan, title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION, prefix="/api")
 
 
 origins = [
