@@ -11,7 +11,7 @@ class Settings:
 
     def __init__(self):
         # Путь для среды разработки: поднимаемся на 3 уровня вверх от config.py до корня проекта prej
-        env_path_dev = Path(__file__).parent.parent.parent / '.env'
+        env_path_dev = Path(__file__).parent.parent.parent.parent / '.env'
         # Путь для Docker: предполагаем, что .env смонтирован в корень контейнера
         env_path_docker = Path('/') / '.env'
 
@@ -33,13 +33,9 @@ class Settings:
         self.POSTGRES_SERVER: str = os.getenv("POSTGRES_SERVER", "db")
         self.POSTGRES_PORT: str = os.getenv("POSTGRES_PORT", "5432")
         self.POSTGRES_DB: str = os.getenv("POSTGRES_DB", "db")
-        self.SECRET_KEY: str = os.getenv("SECRET_KEY")
-        self.ALGORITHM: str = os.getenv("ALGORITHM", "HS256")
         self.REDIS_URL: str = os.getenv("REDIS_URL", "redis://redis:6379/0")
         self.ACCESS_TOKEN: str = os.getenv("ACCESS_TOKEN")
         self.NUMBER_ATTEMPTS: int = int(os.getenv("NUMBER_ATTEMPTS"))
-        self.BASE_DIR: str = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
-        # self.IMAGE_DIR: str = os.path.join(self.BASE_DIR, "frontend", "public", "images")
         self.SMTP_HOST: str = os.getenv("SMTP_HOST", "smtp.gmail.com")
         self.SMTP_PORT: int = os.getenv("SMTP_PORT", 465)
         self.SMTP_USERNAME: str = os.getenv("SMTP_USERNAME")

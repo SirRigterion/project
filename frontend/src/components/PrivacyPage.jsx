@@ -52,10 +52,10 @@ const PrivacyPage = ({ mode }) => (
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', md: '1fr' },
           gap: { xs: 1.5, sm: 2 },
-          background: mode === 'dark' ? '#2d3748' : '#ffffff',
+          background: 'var(--card-bg)',
           padding: { xs: 1.5, sm: 2 },
-          borderRadius: '0.75rem',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          borderRadius: 'var(--radius)',
+          boxShadow: 'var(--shadow-sm)',
         }}
       >
         <Box className="about-policy">
@@ -63,7 +63,7 @@ const PrivacyPage = ({ mode }) => (
             variant="h3"
             component="h3"
             sx={{
-              color: mode === 'dark' ? '#ffffff' : '#1e293b',
+              color: mode === 'dark' ? 'var(--text-light)' : 'var(--text-dark)',
               fontSize: { xs: '1.2rem', sm: '1.4rem' },
               fontWeight: 700,
               mb: 1,
@@ -74,7 +74,7 @@ const PrivacyPage = ({ mode }) => (
           <Typography
             variant="body1"
             sx={{
-              color: mode === 'dark' ? '#9ca3af' : '#4b5563',
+              color: 'var(--text-medium)',
               fontSize: { xs: '0.9rem', sm: '1rem' },
               mb: 1.5,
             }}
@@ -85,7 +85,7 @@ const PrivacyPage = ({ mode }) => (
             variant="h3"
             component="h3"
             sx={{
-              color: mode === 'dark' ? '#ffffff' : '#1e293b',
+              color: mode === 'dark' ? 'var(--text-light)' : 'var(--text-dark)',
               fontSize: { xs: '1.2rem', sm: '1.4rem' },
               fontWeight: 700,
               mb: 1,
@@ -96,14 +96,14 @@ const PrivacyPage = ({ mode }) => (
           <Typography
             variant="body1"
             sx={{
-              color: mode === 'dark' ? '#9ca3af' : '#4b5563',
+              color: 'var(--text-medium)',
               fontSize: { xs: '0.9rem', sm: '1rem' },
               mb: 1,
             }}
           >
             Собранная информация используется для:
           </Typography>
-          <Box component="ul" sx={{ pl: 2, color: mode === 'dark' ? '#9ca3af' : '#4b5563', fontSize: { xs: '0.9rem', sm: '1rem' } }}>
+          <Box component="ul" sx={{ pl: 2, color: 'var(--text-medium)', fontSize: { xs: '0.9rem', sm: '1rem' } }}>
             <li>Обработки ваших запросов и предоставления услуг.</li>
             <li>Улучшения нашего сайта и клиентского опыта.</li>
             <li>Отправки информационных писем, если вы дали согласие.</li>
@@ -112,7 +112,7 @@ const PrivacyPage = ({ mode }) => (
             variant="h3"
             component="h3"
             sx={{
-              color: mode === 'dark' ? '#ffffff' : '#1e293b',
+              color: mode === 'dark' ? 'var(--text-light)' : 'var(--text-dark)',
               fontSize: { xs: '1.2rem', sm: '1.4rem' },
               fontWeight: 700,
               mb: 1,
@@ -124,7 +124,7 @@ const PrivacyPage = ({ mode }) => (
           <Typography
             variant="body1"
             sx={{
-              color: mode === 'dark' ? '#9ca3af' : '#4b5563',
+              color: 'var(--text-medium)',
               fontSize: { xs: '0.9rem', sm: '1rem' },
             }}
           >

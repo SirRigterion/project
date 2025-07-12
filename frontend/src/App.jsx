@@ -17,7 +17,7 @@ import ErrorPage from './components/ErrorPage';
 import { NavProvider } from './NavContext';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://45.159.208.67:8000/api';
+axios.defaults.baseURL = 'http://45.159.208.85:8000/api';
 
 const App = () => {
   const [mode, setMode] = useState('light');

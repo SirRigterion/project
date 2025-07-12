@@ -16,13 +16,13 @@ async def lifespan(app: FastAPI):
     yield
     await close_cache()
 
-app = FastAPI(lifespan=lifespan, title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION, prefix="/api")
+app = FastAPI(lifespan=lifespan, title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
 
 
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://45.159.208.67:3000",
+    "http://45.159.208.85:3000",
 ]
 
 app.add_middleware(
@@ -34,10 +34,10 @@ app.add_middleware(
 )
 
 # app.mount("/images", StaticFiles(directory=settings.IMAGE_DIR), name="images")
-app.include_router(router_navitems, prefix="/path")
-app.include_router(router_projects, prefix="/img")
-app.include_router(router_services, prefix="/img")
-app.include_router(router_mail, prefix="/mail")
+app.include_router(router_navitems, prefix="/api/path")
+app.include_router(router_projects, prefix="/api/img")
+app.include_router(router_services, prefix="/api/img")
+app.include_router(router_mail, prefix="/api/mail")
 
 if __name__ == "__main__":
     import uvicorn

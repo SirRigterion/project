@@ -15,7 +15,7 @@ const TermsPage = ({ mode }) => (
       paddingTop: { xs: '100px', sm: '120px' },
       paddingBottom: { xs: '2rem', sm: '3rem' },
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flex-start',
     }}
     role="main"
     aria-label="Условия использования"
@@ -58,7 +58,7 @@ const TermsPage = ({ mode }) => (
           boxShadow: 'var(--shadow-sm)',
         }}
       >
-        <Box className="terms-mission">
+        <Box className="about-policy">
           <Typography
             variant="h3"
             component="h3"
